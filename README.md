@@ -41,23 +41,34 @@ Lambda em Python 3.9 para `ligar` uma ou várias instâncias RDS, informando os 
 ```
 import boto3
 
-def lambda_handler(event, context):
+def start_rds_instances(event, context):
+    instances = event.get('instances', [])
 
-    # Obtém a lista de instâncias RDS com a tag "RDS=desliga"
+    if not instances:
+        return {
+            'statusCode': 400,
+            'body': 'Please provide a list of instances to start'
+        }
+
     rds_client = boto3.client('rds')
-    response = rds_client.describe_db_instances(
-        Filters=[
-            {
-                'Name': 'tag:RDS',
-                'Values': ['desliga']
-            }
-        ]
-    )
+    started_instances = []
 
-    # Liga cada instância RDS encontrada
-    for instance in response['DBInstances']:
-        rds_client.start_db_instance(DBInstanceIdentifier=instance['DBInstanceIdentifier'])
-        print(f"Instância {instance['DBInstanceIdentifier']} foi ligada.")
+    for instance in instances:
+        try:
+            response = rds_client.start_db_instance(DBInstanceIdentifier=instance)
+            started_instances.append(instance)
+        except rds_client.exceptions.DBInstanceNotFoundFault:
+            print(f'{instance} not found')
+        except rds_client.exceptions.InvalidDBInstanceStateFault:
+            print(f'{instance} already started')
+
+    return {
+        'statusCode': 200,
+        'body': f'Successfully started instances: {started_instances}'
+    }
+
+def lambda_handler(event, context):
+    start_rds_instances({"instances": ["my-rds-instance-1", "my-rds-instance-2"]}, {})
 ```
 
 ##
