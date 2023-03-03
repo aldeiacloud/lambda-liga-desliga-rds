@@ -1,4 +1,4 @@
-Lambda em Python 3.9 para desligar uma instancia com tag RDS=desliga
+Lambda em Python 3.9 para `desligar` uma instancia com tag RDS=desliga
 
 ```
 import boto3
@@ -28,7 +28,7 @@ Para configurar a lógica de agendamento no EventBridge, você precisará criar 
 
 ##
 
-Lambda em Python 3.9 para ligar uma instancia com tag RDS=desliga
+Lambda em Python 3.9 para `ligar` uma instancia com tag RDS=desliga
 
 
 ```
