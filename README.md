@@ -1,7 +1,7 @@
 Lambda em Python 3.9 para desligar uma instancia com tag RDS=desliga
 
 
-`import boto3
+``import boto3
 
 def lambda_handler(event, context):
 
@@ -19,7 +19,7 @@ def lambda_handler(event, context):
     # Desliga cada instância RDS encontrada
     for instance in response['DBInstances']:
         rds_client.stop_db_instance(DBInstanceIdentifier=instance['DBInstanceIdentifier'])
-        print(f"Instância {instance['DBInstanceIdentifier']} foi desligada.")` 
+        print(f"Instância {instance['DBInstanceIdentifier']} foi desligada.")`
 
 Nesta versão modificada do código, não há nenhuma lógica de agendamento. Em vez disso, a função simplesmente obtém uma lista de instâncias RDS com a tag "RDS=desliga" e desliga cada uma delas.
 
