@@ -88,7 +88,7 @@ Para atribuir essa política ao papel da função lambda, siga estas etapas:
 7. Clique no botão "Revisar política"
 8. Digite um nome descritivo para a política e clique em "Adicionar permissão"
 
-Após atribuir a política à função Lambda, ela terá as permissões necessárias para acessar o serviço RDS e desligar as instâncias RDS com a tag "RDS=desliga".
+Após atribuir a política à função Lambda, ela terá as permissões necessárias para acessar o serviço RDS para ligar ou desligar as instâncias RDS com a tag "RDS=desliga".
 
 ##
 Para criar o gatilho, clique em Add Trigger, escolha EventBridge e adicione um cron para a função configurada.
