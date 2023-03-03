@@ -70,6 +70,17 @@ Para que a função Lambda tenha permissão para desligar ou ligar as instância
               "rds:DescribeDBInstances"
             ],
             "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+              "logs:CreateLogGroup",
+              "logs:CreateLogStream",
+              "logs:PutLogEvents"
+            ],
+            "Resource": [
+              "arn:aws:logs:*:*:*"
+            ]
         }
     ]
 }
