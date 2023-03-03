@@ -1,8 +1,11 @@
 Lambda em Python 3.9 para desligar uma instancia com tag RDS=desliga
 
-`
+---
 import boto3
+
 def lambda_handler(event, context):
+
+    # Obtém a lista de instâncias RDS com a tag "RDS=desliga"
     rds_client = boto3.client('rds')
     response = rds_client.describe_db_instances(
         Filters=[
@@ -13,10 +16,11 @@ def lambda_handler(event, context):
         ]
     )
 
+    # Desliga cada instância RDS encontrada
     for instance in response['DBInstances']:
         rds_client.stop_db_instance(DBInstanceIdentifier=instance['DBInstanceIdentifier'])
         print(f"Instância {instance['DBInstanceIdentifier']} foi desligada.")
-`
+---
 
 Nesta versão modificada do código, não há nenhuma lógica de agendamento. Em vez disso, a função simplesmente obtém uma lista de instâncias RDS com a tag "RDS=desliga" e desliga cada uma delas.
 
@@ -27,11 +31,12 @@ Para configurar a lógica de agendamento no EventBridge, você precisará criar 
 Lambda em Python 3.9 para ligar uma instancia com tag RDS=desliga
 
 
-`
+---
 import boto3
 
 def lambda_handler(event, context):
 
+    # Obtém a lista de instâncias RDS com a tag "RDS=desliga"
     rds_client = boto3.client('rds')
     response = rds_client.describe_db_instances(
         Filters=[
@@ -42,10 +47,12 @@ def lambda_handler(event, context):
         ]
     )
 
+    # Liga cada instância RDS encontrada
     for instance in response['DBInstances']:
         rds_client.start_db_instance(DBInstanceIdentifier=instance['DBInstanceIdentifier'])
         print(f"Instância {instance['DBInstanceIdentifier']} foi ligada.")
-` 
+---
+
 
 Nesta versão modificada do código, a lógica de obtenção de instâncias RDS com a tag "RDS=desliga" é a mesma. A diferença é que, em vez de chamar o método `stop_db_instance`, a função agora chama o método `start_db_instance`, o que liga a instância RDS.
 
