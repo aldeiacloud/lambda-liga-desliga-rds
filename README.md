@@ -5,7 +5,6 @@ import boto3
 
 def lambda_handler(event, context):
 
-    # Obtém a lista de instâncias RDS com a tag "RDS=desliga"
     rds_client = boto3.client('rds')
     response = rds_client.describe_db_instances(
         Filters=[
@@ -16,7 +15,6 @@ def lambda_handler(event, context):
         ]
     )
 
-    # Desliga cada instância RDS encontrada
     for instance in response['DBInstances']:
         rds_client.stop_db_instance(DBInstanceIdentifier=instance['DBInstanceIdentifier'])
         print(f"Instância {instance['DBInstanceIdentifier']} foi desligada.")
@@ -36,7 +34,6 @@ import boto3
 
 def lambda_handler(event, context):
 
-    # Obtém a lista de instâncias RDS com a tag "RDS=desliga"
     rds_client = boto3.client('rds')
     response = rds_client.describe_db_instances(
         Filters=[
@@ -47,7 +44,6 @@ def lambda_handler(event, context):
         ]
     )
 
-    # Liga cada instância RDS encontrada
     for instance in response['DBInstances']:
         rds_client.start_db_instance(DBInstanceIdentifier=instance['DBInstanceIdentifier'])
         print(f"Instância {instance['DBInstanceIdentifier']} foi ligada.")
