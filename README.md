@@ -60,9 +60,8 @@ Lembre-se de que você ainda precisará atribuir a política correta à função
 
 Para que a função Lambda tenha permissão para desligar as instâncias RDS usando o cliente do RDS da AWS, você precisará atribuir uma política ao papel da função que permita o acesso ao serviço RDS. Aqui está um exemplo de política JSON que você pode usar:
 
-jsonCopy code
-
-`{
+```
+{
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -75,7 +74,8 @@ jsonCopy code
             "Resource": "*"
         }
     ]
-}` 
+}
+```
 
 Esta política permite que a função Lambda chame os métodos `StopDBInstance`,`StartDBInstance` e `DescribeDBInstances` no serviço RDS, que são necessários para desligar e ligar as instâncias RDS e obter informações sobre as instâncias com a tag "RDS=desliga".
 
