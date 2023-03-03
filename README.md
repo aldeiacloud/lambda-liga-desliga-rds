@@ -103,7 +103,7 @@ Para que a função Lambda tenha permissão para desligar ou ligar as instância
 ```
 
 ##
-Esta política permite que a função Lambda chame os métodos `StopDBInstance`,`StartDBInstance` e `DescribeDBInstances` no serviço RDS, que são necessários para desligar e ligar as instâncias RDS e obter informações sobre as instâncias com a tag "RDS=desliga".
+Esta política permite que a função Lambda chame os métodos `StopDBInstance`,`StartDBInstance` e `DescribeDBInstances` no serviço RDS, que são necessários para desligar e ligar as instâncias RDS.
 
 Para atribuir essa política ao papel da função lambda, siga estas etapas:
 
