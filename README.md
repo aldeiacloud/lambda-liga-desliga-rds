@@ -1,4 +1,4 @@
-Lambda em Python 3.9 para `desligar` uma ou várias instâncias RDS, informando os nomes dos bancos a serem desligados na linha `   stop_rds_instances({"instances": ["my-rds-instance-1", "my-rds-instance-2"]}, {})`
+Lambda em Python 3.9 para `desligar` uma ou várias instâncias RDS, informando os nomes dos bancos a serem desligados na linha `stop_rds_instances({"instances": ["my-rds-instance-1", "my-rds-instance-2"]}, {})`
 
 ```
 import boto3
@@ -35,7 +35,7 @@ def lambda_handler(event, context):
 ```
 
 ##
-Lambda em Python 3.9 para `ligar` uma ou várias instâncias RDS, informando os nomes dos bancos a serem desligados na linha `   stop_rds_instances({"instances": ["my-rds-instance-1", "my-rds-instance-2"]}, {})`
+Lambda em Python 3.9 para `ligar` uma ou várias instâncias RDS, informando os nomes dos bancos a serem desligados na linha `stop_rds_instances({"instances": ["my-rds-instance-1", "my-rds-instance-2"]}, {})`
 
 
 ```
