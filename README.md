@@ -64,36 +64,31 @@ def lambda_handler(event, context):
 Para que a função Lambda tenha permissão para desligar ou ligar as instâncias RDS usando o cliente do RDS da AWS, você precisará atribuir uma política ao papel da função que permita o acesso ao serviço RDS. Aqui está um exemplo de política JSON que você pode usar:
 
 ```
-import boto3
-
-def start_rds_instances(event, context):
-    instances = event.get('instances', [])
-
-    if not instances:
-        return {
-            'statusCode': 400,
-            'body': 'Please provide a list of instances to start'
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+              "rds:StartDBInstance",
+              "rds:StopDBInstance",
+              "rds:DescribeDBInstances"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+              "logs:CreateLogGroup",
+              "logs:CreateLogStream",
+              "logs:PutLogEvents"
+            ],
+            "Resource": [
+              "arn:aws:logs:*:*:*"
+            ]
         }
-
-    rds_client = boto3.client('rds')
-    started_instances = []
-
-    for instance in instances:
-        try:
-            response = rds_client.start_db_instance(DBInstanceIdentifier=instance)
-            started_instances.append(instance)
-        except rds_client.exceptions.DBInstanceNotFoundFault:
-            print(f'{instance} not found')
-        except rds_client.exceptions.InvalidDBInstanceStateFault:
-            print(f'{instance} already started')
-
-    return {
-        'statusCode': 200,
-        'body': f'Successfully started instances: {started_instances}'
-    }
-
-def lambda_handler(event, context):
-    start_rds_instances({"instances": ["my-rds-instance-1", "my-rds-instance-2"]}, {})
+    ]
+}
 ```
 
 ##
