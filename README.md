@@ -2,9 +2,7 @@ Lambda em Python 3.9 para desligar uma instancia com tag RDS=desliga
 
 `
 import boto3
-
 def lambda_handler(event, context):
-
     rds_client = boto3.client('rds')
     response = rds_client.describe_db_instances(
         Filters=[
