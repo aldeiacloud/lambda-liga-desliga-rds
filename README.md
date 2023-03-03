@@ -53,10 +53,8 @@ def lambda_handler(event, context):
         print(f"Instância {instance['DBInstanceIdentifier']} foi ligada.")
 ```
 
-
+##
 Nesta versão modificada do código, a lógica de obtenção de instâncias RDS com a tag "RDS=desliga" é a mesma. A diferença é que, em vez de chamar o método `stop_db_instance`, a função agora chama o método `start_db_instance`, o que liga a instância RDS.
-
-Lembre-se de que você ainda precisará atribuir a política correta à função lambda para que ela tenha as permissões necessárias para ligar as instâncias RDS.
 
 Para que a função Lambda tenha permissão para desligar ou ligar as instâncias RDS usando o cliente do RDS da AWS, você precisará atribuir uma política ao papel da função que permita o acesso ao serviço RDS. Aqui está um exemplo de política JSON que você pode usar:
 
@@ -76,7 +74,7 @@ Para que a função Lambda tenha permissão para desligar ou ligar as instância
     ]
 }
 ```
-
+##
 Esta política permite que a função Lambda chame os métodos `StopDBInstance`,`StartDBInstance` e `DescribeDBInstances` no serviço RDS, que são necessários para desligar e ligar as instâncias RDS e obter informações sobre as instâncias com a tag "RDS=desliga".
 
 Para atribuir essa política ao papel da função lambda, siga estas etapas:
