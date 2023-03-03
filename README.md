@@ -68,6 +68,7 @@ jsonCopy code
         {
             "Effect": "Allow",
             "Action": [
+              "rds:StartDBInstance",
               "rds:StopDBInstance",
               "rds:DescribeDBInstances"
             ],
@@ -76,7 +77,7 @@ jsonCopy code
     ]
 }` 
 
-Esta política permite que a função Lambda chame os métodos `StopDBInstance` e `DescribeDBInstances` no serviço RDS, que são necessários para desligar as instâncias RDS e obter informações sobre as instâncias com a tag "RDS=desliga".
+Esta política permite que a função Lambda chame os métodos `StopDBInstance`,`StartDBInstance` e `DescribeDBInstances` no serviço RDS, que são necessários para desligar e ligar as instâncias RDS e obter informações sobre as instâncias com a tag "RDS=desliga".
 
 Para atribuir essa política ao papel da função lambda, siga estas etapas:
 
@@ -90,3 +91,6 @@ Para atribuir essa política ao papel da função lambda, siga estas etapas:
 8. Digite um nome descritivo para a política e clique em "Adicionar permissão"
 
 Após atribuir a política à função Lambda, ela terá as permissões necessárias para acessar o serviço RDS e desligar as instâncias RDS com a tag "RDS=desliga".
+
+##
+Para criar o gatilho, crie em Add Trigger para EventBridge e adicione um cron para a Função configurada.
