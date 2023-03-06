@@ -72,7 +72,7 @@ def lambda_handler(event, context):
 ```
 
 ##
-Para que a função Lambda tenha permissão para desligar ou ligar as instâncias RDS usando o cliente do RDS da AWS, você precisará atribuir uma política ao papel da função que permita o acesso ao serviço RDS. Aqui está um exemplo de política JSON que você pode usar:
+Para que a função Lambda tenha permissão para `desligar` ou `ligar` as instâncias RDS usando o cliente do RDS da AWS, você precisará atribuir uma política ao papel da função que permita o acesso ao serviço RDS. Aqui está um exemplo de política JSON que você pode usar:
 
 ```
 {
