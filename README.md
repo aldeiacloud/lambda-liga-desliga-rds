@@ -118,5 +118,5 @@ Para atribuir essa política ao papel da função lambda, siga estas etapas:
 
 ##
 Obs.:<p>
-Alterar o tempo de execução para 1 minuto;<p>
+Alterar o tempo de execução para 1 minuto;<br>
 Para criar o gatilho, clique em Add Trigger, escolha EventBridge e adicione um cron para a função configurada.
